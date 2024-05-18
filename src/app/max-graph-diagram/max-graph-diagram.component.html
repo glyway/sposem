@@ -5,7 +5,11 @@
       <button mat-raised-button color="basic" (click)="selectAll()">Выделить все</button>
       <button mat-raised-button color="basic" (click)="clearSelection()">Снять выделение</button>
       <button mat-raised-button color="primary" (click)="export()">Экспорт</button>
-      <input #importFileInput type="file" (change)="this.onImportFileChange()" value="this.importFile">
+      <label for="importFileInput" class="mat-button-base mat-basic mat-raised-button">
+        Выбрать файл
+      </label>
+      <input id="importFileInput" #importFileInput type="file" (change)="this.onImportFileChange()" value="this.importFile">
+      <p align="center" *ngIf="this.importFileSource !== null">Файл выбран</p>
       <button mat-raised-button color="primary" (click)="import()">Импорт</button>
       <button mat-raised-button color="warn" (click)="deleteAll()">Удалить все</button>
       <button mat-raised-button color="warn" (click)="deleteSelected()">Удалить выделенное</button>

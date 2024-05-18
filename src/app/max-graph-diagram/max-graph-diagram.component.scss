@@ -19,6 +19,14 @@
         flex-direction: column;
         gap: 10px;
         flex: 0.3;
+
+        input {
+            display: none;
+        }
+
+        p {
+            margin-bottom: 0;
+        }
     }
 
     .graph {
