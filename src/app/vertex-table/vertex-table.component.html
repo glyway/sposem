@@ -1,40 +1,47 @@
 <mat-table [dataSource]="this.items" class="mat-elevation-z8">
     <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
-      <mat-cell *matCellDef="let vertex"> {{vertex.id}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+        <mat-cell *matCellDef="let vertex"> {{vertex.id}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="label">
-      <mat-header-cell *matHeaderCellDef> Название </mat-header-cell>
-      <mat-cell (click)="this.editVertex(vertex, $event)" *matCellDef="let vertex"> <span (click)="this.onVertexValueClicked(vertex, $event)">{{vertex.value}}</span> </mat-cell>
+        <mat-header-cell *matHeaderCellDef> Название </mat-header-cell>
+        <mat-cell (click)="this.editVertex(vertex, $event)" *matCellDef="let vertex"> <span
+                (click)="this.onVertexValueClicked(vertex, $event)">{{vertex.value}}</span> </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="description">
-      <mat-header-cell *matHeaderCellDef> Определение </mat-header-cell>
-      <mat-cell (click)="this.editVertex(vertex, $event)" *matCellDef="let vertex"> {{this.getDescriptionByVertex(vertex)}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef> Определение </mat-header-cell>
+        <mat-cell (click)="this.editVertex(vertex, $event)" *matCellDef="let vertex">
+            {{this.getDescriptionByVertex(vertex)}} </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
+</mat-table>
 
-<div #floatingWindowDescription class="floating-window floating-window-description" [style.display]="this.edittableVertex !== null ? 'flex' : 'none'" (click)="$event.stopImmediatePropagation()">
+<div #floatingWindowDescription class="floating-window floating-window-description"
+    [style.display]="this.edittableVertex !== null ? 'flex' : 'none'" (click)="$event.stopImmediatePropagation()">
     <mat-card>
         <h2>Редактор термина</h2>
         <mat-form-field *ngIf="this.edittableVertex !== null">
             <mat-label>Название</mat-label>
-            <input matInput type="text" [(ngModel)]="this.edittableVertex.value" (ngModelChange)="this.onVertexChange(this.edittableVertex)">
+            <input matInput type="text" [(ngModel)]="this.edittableVertex.value"
+                (ngModelChange)="this.onVertexChange(this.edittableVertex)">
         </mat-form-field>
         <mat-form-field *ngIf="this.edittableVertex !== null">
             <mat-label>Определение</mat-label>
-            <input matInput type="text" [(ngModel)]="this.newDescription" (ngModelChange)="this.onNewDescriptionChange($event)">
+            <input matInput type="text" [(ngModel)]="this.newDescription"
+                (ngModelChange)="this.onNewDescriptionChange($event)">
         </mat-form-field>
     </mat-card>
 </div>
 
-  <div #floatingWindow class="floating-window" [style.display]="this.selectedVertexEdges.length > 0 ? 'block' : 'none'" (click)="$event.stopImmediatePropagation()">
+<div #floatingWindow class="floating-window" [style.display]="this.selectedVertexEdges.length > 0 ? 'block' : 'none'"
+    (click)="$event.stopImmediatePropagation()">
     <mat-card>
         <h2>Связи</h2>
-        <app-edge-table [vertices]="this.items" [items]="this.selectedVertexEdges" [parent]="this.selectedVertex" (edgeChange)="this.onEdgeChange($event)"></app-edge-table>
+        <app-edge-table [vertices]="this.items" [items]="this.selectedVertexEdges" [parent]="this.selectedVertex"
+            (edgeChange)="this.onEdgeChange($event)"></app-edge-table>
     </mat-card>
-  </div>
+</div>

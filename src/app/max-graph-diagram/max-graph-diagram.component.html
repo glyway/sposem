@@ -14,16 +14,18 @@
       <div #toolbarContainer></div>
       <div class="graphContainer" #graphContainer style="border:1px solid gray;"></div>
     </div>
-    
+
   </div>
 </mat-card>
 
 <mat-card class="vertex-table">
-    <h1 align="center">Элементы диаграммы</h1>
-    <app-vertex-table [items]="this.vertices" [edges]="this.edges" (vertexChange)="this.onVertexChange($event)" (edgeChange)="this.onEdgeChange($event)"></app-vertex-table>
+  <h1 align="center">Элементы диаграммы</h1>
+  <app-vertex-table [items]="this.vertices" [edges]="this.edges" (vertexChange)="this.onVertexChange($event)"
+    (edgeChange)="this.onEdgeChange($event)"></app-vertex-table>
 </mat-card>
-  
+
 <mat-card>
-    <h1 align="center">Связи диаграммы</h1>
-    <app-edge-table [vertices]="this.vertices" [items]="this.edges" (edgeChange)="this.onEdgeChange($event)"></app-edge-table>
+  <h1 align="center">Связи диаграммы</h1>
+  <app-edge-table [vertices]="this.vertices" [items]="this.edges"
+    (edgeChange)="this.onEdgeChange($event)"></app-edge-table>
 </mat-card>
