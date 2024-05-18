@@ -21,7 +21,8 @@
     "lib": [
       "es2020",
       "dom"
-    ]
+    ],
+    "typeRoots": ["node_modules/@angular/material"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

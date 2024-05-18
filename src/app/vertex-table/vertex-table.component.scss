@@ -1,0 +1,11 @@
+
+.floating-window {
+    position: fixed;
+    width: 600px;
+}
+
+.floating-window-description mat-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

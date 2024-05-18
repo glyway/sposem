@@ -1,0 +1,29 @@
+<mat-card>
+  <h1 align="center">Визуализация схемы</h1>
+  <div class="visual">
+    <div class="tools">
+      <button mat-raised-button color="basic" (click)="selectAll()">Выделить все</button>
+      <button mat-raised-button color="basic" (click)="clearSelection()">Снять выделение</button>
+      <button mat-raised-button color="primary" (click)="export()">Экспорт</button>
+      <input #importFileInput type="file" (change)="this.onImportFileChange()" value="this.importFile">
+      <button mat-raised-button color="primary" (click)="import()">Импорт</button>
+      <button mat-raised-button color="warn" (click)="deleteAll()">Удалить все</button>
+      <button mat-raised-button color="warn" (click)="deleteSelected()">Удалить выделенное</button>
+    </div>
+    <div class="graph">
+      <div #toolbarContainer></div>
+      <div class="graphContainer" #graphContainer style="border:1px solid gray;"></div>
+    </div>
+    
+  </div>
+</mat-card>
+
+<mat-card class="vertex-table">
+    <h1 align="center">Элементы диаграммы</h1>
+    <app-vertex-table [items]="this.vertices" [edges]="this.edges"></app-vertex-table>
+</mat-card>
+  
+<mat-card>
+    <h1 align="center">Связи диаграммы</h1>
+    <app-edge-table [vertices]="this.vertices" [items]="this.edges"></app-edge-table>
+</mat-card>
