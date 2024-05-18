@@ -43,7 +43,7 @@ export class VertexTableComponent implements OnInit {
     this.selectedVertexEdges = this.edges.filter(edge => edge.target?.id === vertex.id || edge.source?.id === vertex.id);
     if (this.floatingWindow instanceof ElementRef) {
       this.floatingWindow.nativeElement.style.left = clickEvent.clientX + 20 + 'px';
-      this.floatingWindow.nativeElement.style.top = clickEvent.clientY + 20  + 'px';
+      this.floatingWindow.nativeElement.style.bottom = window.innerHeight - clickEvent.clientY + 20  + 'px';
     }
   }
 
@@ -60,7 +60,7 @@ export class VertexTableComponent implements OnInit {
     this.selectedVertexEdges = [];
     if (this.floatingWindowDescription instanceof ElementRef) {
       this.floatingWindowDescription.nativeElement.style.left = clickEvent.clientX + 20 + 'px';
-      this.floatingWindowDescription.nativeElement.style.top = clickEvent.clientY + 20  + 'px';
+      this.floatingWindowDescription.nativeElement.style.bottom = window.innerHeight - clickEvent.clientY + 20  + 'px';
     }
     this.edittableVertex = vertex;
     this.newDescription = (vertex as any).description;
