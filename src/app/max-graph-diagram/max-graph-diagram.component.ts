@@ -28,6 +28,7 @@ export class MaxGraphDiagramComponent implements OnInit, AfterViewInit {
       this.graph.cellsEditable = true;
       this.graph.htmlLabels = true;
       this.graph.getStylesheet().getDefaultEdgeStyle().edgeStyle = 'orthogonalEdgeStyle';
+      this.graph.getStylesheet().getDefaultEdgeStyle().noLabel = true;
       this.graph.getStylesheet().getDefaultVertexStyle().editable = true;
       this.graph.addListener(InternalEvent.ADD_CELLS, () => {
         this.updateTables();
@@ -240,6 +241,7 @@ export class MaxGraphDiagramComponent implements OnInit, AfterViewInit {
     if (this.graph === null) {
       return;
     }
+    this.graph.cellLabelChanged(this.vertices[ogVertex], vertex.value, false);
   }
 
 }

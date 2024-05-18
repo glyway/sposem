@@ -31,6 +31,7 @@
 
   <div class="floating-window" *ngIf="this.edittableEdge !== null" (click)="$event.stopImmediatePropagation()">
     <mat-card>
+        <h2>Редактор связи</h2>
         <mat-form-field>
             <mat-label>Типы связи</mat-label>
             <mat-select [(ngModel)]="this.edittableEdge.value" (ngModelChange)="this.onEdgeChanged()">
