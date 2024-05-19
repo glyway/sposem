@@ -128,7 +128,21 @@ export class MaxGraphDiagramComponent implements OnInit, AfterViewInit {
     this.graph.selectAll();
   }
 
-  // Метод для удаления всех объектов
+  protected clearSelection(): void {
+    if (this.graph === null) {
+      return;
+    }
+    this.graph.clearSelection();
+  }
+
+  protected deleteSelected(): void {
+    if (this.graph === null) {
+      return;
+    }
+    this.graph.removeCells(this.graph.getSelectionCells());
+    this.updateTables();
+  }
+
   protected deleteAll(): void {
     if (this.graph === null) {
       return;
@@ -152,22 +166,7 @@ export class MaxGraphDiagramComponent implements OnInit, AfterViewInit {
       this.graph.startEditingAtCell(vertex)
     })
   }
-
-  protected deleteSelected(): void {
-    if (this.graph === null) {
-      return;
-    }
-    this.graph.removeCells(this.graph.getSelectionCells());
-    this.updateTables();
-  }
-
-  protected clearSelection(): void {
-    if (this.graph === null) {
-      return;
-    }
-    this.graph.clearSelection();
-  }
-
+  
   protected export() {
     if (this.graph === null) {
       return;
