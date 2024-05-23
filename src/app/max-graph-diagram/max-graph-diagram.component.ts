@@ -163,7 +163,6 @@ export class MaxGraphDiagramComponent implements OnInit, AfterViewInit {
       }
       const vertex = this.graph.insertVertex(parent, null, 'New Vertex', 100, 100, 80, 30);
       (vertex as any).description = 'Added with Button';
-      this.graph.startEditingAtCell(vertex)
     })
   }
   
