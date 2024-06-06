@@ -24,10 +24,16 @@
 
     <ng-container matColumnDef="target">
         <mat-header-cell *matHeaderCellDef> Цель </mat-header-cell>
-        <mat-cell *matCellDef="let edge"> {{this.parent?.id !== edge.target.id ?
-            (this.getVertexFromId(edge.target.id)?.value ?? edge.target.id) :
-            (this.getVertexFromId(edge.source.id)?.value ?? edge.source.id)}} (id: {{this.parent?.id !== edge.target.id
-            ? edge.target.id : edge.source.id}})
+        <mat-cell *matCellDef="let edge">
+            <span (click)="this.parentChange.emit(this.parent?.id !== edge.target.id ?
+            (edge.target) :
+            (edge.source))">
+                {{this.parent?.id !== edge.target.id ?
+                (this.getVertexFromId(edge.target.id)?.value ?? edge.target.id) :
+                (this.getVertexFromId(edge.source.id)?.value ?? edge.source.id)}} (id: {{this.parent?.id !== edge.target.id
+                ? edge.target.id : edge.source.id}})
+            </span> 
+
         </mat-cell>
     </ng-container>
 

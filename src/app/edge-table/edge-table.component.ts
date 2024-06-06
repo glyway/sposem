@@ -14,6 +14,8 @@ export class EdgeTableComponent implements OnInit, OnChanges {
   @Input() public vertices: Cell[] = [];
 
   @Output() public edgeChange = new EventEmitter<Cell>();
+  @Output() public parentChange = new EventEmitter<Cell>();
+
 
   @HostListener('window:click') onClick() {
     this.edittableEdge = null;

@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Cell } from '@maxgraph/core';
 
 @Component({
@@ -6,7 +6,7 @@ import { Cell } from '@maxgraph/core';
   templateUrl: './vertex-table.component.html',
   styleUrls: ['./vertex-table.component.scss']
 })
-export class VertexTableComponent implements OnInit {
+export class VertexTableComponent implements OnInit, AfterViewInit {
   @Input() public items: Cell[] = [];
   @Input() public edges: Cell[] = [];
 
@@ -18,6 +18,16 @@ export class VertexTableComponent implements OnInit {
 
   protected displayedColumns: string[] = ['id', 'label', 'description'];
 
+  private floatingWindowBottom: number = 0;
+  private mutationObserver = new MutationObserver(() => {
+    if (this.floatingWindow instanceof ElementRef) {
+      this.floatingWindow.nativeElement.style.bottom = this.floatingWindowBottom  + 'px';
+      if (this.floatingWindow.nativeElement.getBoundingClientRect().top < 0) {
+        this.floatingWindow.nativeElement.style.bottom = this.floatingWindowBottom + this.floatingWindow.nativeElement.getBoundingClientRect().top + 'px';
+      }
+    }
+  })
+
   @HostListener('window:click') onClick() {
     this.selectedVertex = null;
     this.selectedVertexEdges = [];
@@ -27,6 +37,15 @@ export class VertexTableComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  ngAfterViewInit(): void {
+    if (this.floatingWindow instanceof ElementRef) {
+      this.mutationObserver.observe(this.floatingWindow.nativeElement, {
+        childList: true,
+        subtree: true
+      })
+    }
   }
 
   protected selectedVertex: Cell | null = null;
@@ -43,7 +62,11 @@ export class VertexTableComponent implements OnInit {
     this.selectedVertexEdges = this.edges.filter(edge => edge.target?.id === vertex.id || edge.source?.id === vertex.id);
     if (this.floatingWindow instanceof ElementRef) {
       this.floatingWindow.nativeElement.style.left = clickEvent.clientX + 20 + 'px';
-      this.floatingWindow.nativeElement.style.bottom = window.innerHeight - clickEvent.clientY + 20  + 'px';
+      this.floatingWindowBottom = window.innerHeight - clickEvent.clientY + 20;
+      this.floatingWindow.nativeElement.style.bottom = this.floatingWindowBottom  + 'px';
+      if (this.floatingWindow.nativeElement.getBoundingClientRect().top < 0) {
+        this.floatingWindow.nativeElement.style.bottom = this.floatingWindowBottom + this.floatingWindow.nativeElement.getBoundingClientRect().top + 'px';
+      }
     }
   }
 
@@ -61,6 +84,9 @@ export class VertexTableComponent implements OnInit {
     if (this.floatingWindowDescription instanceof ElementRef) {
       this.floatingWindowDescription.nativeElement.style.left = clickEvent.clientX + 20 + 'px';
       this.floatingWindowDescription.nativeElement.style.bottom = window.innerHeight - clickEvent.clientY + 20  + 'px';
+      if (window.innerHeight - clickEvent.clientY + 20 > window.innerHeight - this.floatingWindowDescription.nativeElement.offsetHeight) {
+        this.floatingWindowDescription.nativeElement.style.bottom = window.innerHeight - clickEvent.clientY + 20 - this.floatingWindowDescription.nativeElement.offsetHeight + 'px';
+      }
     }
     this.edittableVertex = vertex;
     this.newDescription = (vertex as any).description;
@@ -75,6 +101,12 @@ export class VertexTableComponent implements OnInit {
 
   protected onVertexChange(vertex: Cell) {
     this.vertexChange.emit(vertex);
+  }
+
+  protected onSelectedVertexChange(vertex: Cell): void {
+    this.edittableVertex = null;
+    this.selectedVertex = vertex;
+    this.selectedVertexEdges = this.edges.filter(edge => edge.target?.id === vertex.id || edge.source?.id === vertex.id);
   }
 
 }

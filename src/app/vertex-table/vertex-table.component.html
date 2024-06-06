@@ -21,9 +21,10 @@
 </mat-table>
 
 <div #floatingWindowDescription class="floating-window floating-window-description"
-    [style.display]="this.edittableVertex !== null ? 'flex' : 'none'" (click)="$event.stopImmediatePropagation()">
+    [style.visibility]="this.edittableVertex !== null ? 'visible' : 'hidden'" (click)="$event.stopImmediatePropagation()">
     <mat-card>
         <h2>Редактор термина</h2>
+        <div class="empty-spacer" *ngIf="this.edittableVertex === null"></div>
         <mat-form-field *ngIf="this.edittableVertex !== null">
             <mat-label>Название</mat-label>
             <input matInput type="text" [(ngModel)]="this.edittableVertex.value"
@@ -37,11 +38,11 @@
     </mat-card>
 </div>
 
-<div #floatingWindow class="floating-window" [style.display]="this.selectedVertexEdges.length > 0 ? 'block' : 'none'"
+<div #floatingWindow class="floating-window" [style.visibility]="this.selectedVertexEdges.length > 0 ? 'visible' : 'hidden'"
     (click)="$event.stopImmediatePropagation()">
     <mat-card>
         <h2>Связи</h2>
         <app-edge-table [vertices]="this.items" [items]="this.selectedVertexEdges" [parent]="this.selectedVertex"
-            (edgeChange)="this.onEdgeChange($event)"></app-edge-table>
+            (edgeChange)="this.onEdgeChange($event)" (parentChange)="this.onSelectedVertexChange($event)"></app-edge-table>
     </mat-card>
 </div>
