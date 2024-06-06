@@ -8,7 +8,5 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-}
-.empty-spacer {
-    height: 150px;
+    min-height: 200px;
 }

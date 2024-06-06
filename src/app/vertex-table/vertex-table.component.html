@@ -24,7 +24,6 @@
     [style.visibility]="this.edittableVertex !== null ? 'visible' : 'hidden'" (click)="$event.stopImmediatePropagation()">
     <mat-card>
         <h2>Редактор термина</h2>
-        <div class="empty-spacer" *ngIf="this.edittableVertex === null"></div>
         <mat-form-field *ngIf="this.edittableVertex !== null">
             <mat-label>Название</mat-label>
             <input matInput type="text" [(ngModel)]="this.edittableVertex.value"
