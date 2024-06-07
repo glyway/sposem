@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaxGraphDiagramComponent } from './max-graph-diagram/max-graph-diagram.component';
@@ -25,7 +23,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,
     FormsModule,

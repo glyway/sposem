@@ -27,9 +27,3 @@
   <app-vertex-table [items]="this.vertices" [edges]="this.edges" (vertexChange)="this.onVertexChange($event)"
     (edgeChange)="this.onEdgeChange($event)"></app-vertex-table>
 </mat-card>
-
-<mat-card>
-  <h1 align="center">Связи диаграммы</h1>
-  <app-edge-table [vertices]="this.vertices" [items]="this.edges"
-    (edgeChange)="this.onEdgeChange($event)"></app-edge-table>
-</mat-card>

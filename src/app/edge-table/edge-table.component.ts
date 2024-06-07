@@ -21,7 +21,7 @@ export class EdgeTableComponent implements OnInit, OnChanges {
     this.edittableEdge = null;
   }
 
-  displayedColumns: string[] = ['id', 'source', 'linkType', 'target'];
+  displayedColumns: string[] = ['source', 'linkType', 'target'];
 
   constructor() { }
 

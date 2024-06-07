@@ -24,7 +24,7 @@
 
     <ng-container matColumnDef="target">
         <mat-header-cell *matHeaderCellDef> Цель </mat-header-cell>
-        <mat-cell *matCellDef="let edge">
+        <mat-cell matTooltip="Выбрать как Источник" *matCellDef="let edge">
             <span (click)="this.parentChange.emit(this.parent?.id !== edge.target.id ?
             (edge.target) :
             (edge.source))">
