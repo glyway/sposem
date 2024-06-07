@@ -7,12 +7,12 @@
     <ng-container matColumnDef="label">
         <mat-header-cell *matHeaderCellDef> Название </mat-header-cell>
         <mat-cell (click)="this.editVertex(vertex, $event)" *matCellDef="let vertex"> <span
-                (click)="this.onVertexValueClicked(vertex, $event)">{{vertex.value}}</span> </mat-cell>
+                (click)="this.onVertexValueClicked(vertex, $event)" matTooltip="Открыть таблицу связей">{{vertex.value}}</span> </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="description">
         <mat-header-cell *matHeaderCellDef> Определение </mat-header-cell>
-        <mat-cell (click)="this.editVertex(vertex, $event)" *matCellDef="let vertex">
+        <mat-cell (click)="this.editVertex(vertex, $event)" matTooltip="Редактировать" *matCellDef="let vertex">
             {{this.getDescriptionByVertex(vertex)}} </mat-cell>
     </ng-container>
 
